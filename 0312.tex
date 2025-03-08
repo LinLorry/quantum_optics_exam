@@ -1,0 +1,74 @@
+%!LW recipe=xelatex
+\documentclass[twoside]{article}
+\usepackage{braket}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[a4paper,margin=0.5in,includehead,]{geometry}
+\usepackage{fancyhdr}
+\usepackage[UTF8]{ctex}
+
+\begin{document}
+\title{量子光学03月12日第一次作业}
+\author{Author}
+\pagestyle{fancy}
+\makeatletter
+\fancyhead[L]{\@title}
+\fancyhead[R]{\@author}
+\makeatother
+\setlength{\parindent}{0pt}
+
+\section*{Answer for 2.3}
+
+\begin{enumerate}
+    \item[(a)] 与x轴成$+45^\circ$线偏振光
+    \item[(b)] 与x轴成$+30^\circ$线偏振光
+    \item[(c)] 左旋圆偏振光
+    \item[(d)] 右旋圆偏振光
+    \item[(e)] 长轴在x轴上的左旋椭圆偏振光, $a/b = \sqrt{3}$
+    \item[(f)] 长轴在与x轴成$+45^\circ$的左旋椭圆偏振光， $a/b = \sqrt{2} + 1$
+\end{enumerate}
+
+\section*{Answer for 2.4}
+
+有 $L = 5 \times 10^6 $km, $d = 30$cm, $ \lambda = 1064$nm
+
+光经过衍射后光强大部分集中在直径为$d^\prime = 2 * \tan\theta_{min} L \approx 2 * \sin\theta_{min} L \approx 1.22 \frac{\lambda}{d} L$的圆内.
+接收器接收到的功率$P$与光源的功率$P_{sou}$的比值满足接收器面积与衍射后光照范围的比值. 于是有:
+
+$$
+    P = P_{sou} \times \left(\frac{d^\prime}{d}\right)^2 = 4.8 \times 10^{-11} W
+$$
+\section*{Answer for 2.6}
+
+\subsection*{2.6 (a)}
+
+
+有多普勒展宽的关系式:
+$$
+    \Delta \omega = \frac{4\pi}{\lambda}\left[\frac{\left(2 \ln 2\right) k_B T}{m}\right]^{\frac{1}{2}}
+$$
+对于高斯线型, 有最大相干时间:
+$$
+    \tau = \frac{\left(8\pi\ln 2\right)^\frac{1}{2}}{\Delta \omega}
+$$
+所以最大光程差为其相干长度:
+$$L_c = c \tau \approx 0.35 m$$
+
+\subsection*{2.6 (b)}
+
+同理有:
+
+$$L_c = c \frac{1}{\Delta \omega} \approx 47.75 m $$
+
+\section*{Answer for 2.10}
+
+若要实现倍频, 需要相位匹配, 要求满足以下关系:
+$$
+    \frac{1}{\left(n^\omega_o\right)^2} = \frac{\sin^2 \theta}{\left(n^{2\omega}_e\right)^2} + \frac{\cos^2 \theta}{\left(n^{2\omega}_o\right)^2}
+$$
+
+代入计算可知 $\theta \approx 41^\circ$
+
+\end{document}
