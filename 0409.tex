@@ -1,0 +1,67 @@
+%!LW recipe=xelatex
+\documentclass[twoside]{article}
+\usepackage{braket}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[a4paper,margin=0.5in,includehead,]{geometry}
+\usepackage{fancyhdr}
+\usepackage[UTF8]{ctex}
+
+\begin{document}
+\title{量子光学04月09日第三次作业}
+\author{Author}
+\pagestyle{fancy}
+\makeatletter
+\fancyhead[L]{\@title}
+\fancyhead[R]{\@author}
+\makeatother
+\setlength{\parindent}{0pt}
+
+\section*{Answer for 5.7}
+
+\subsection*{(a)}
+
+可计算光子通量$\Phi$为:
+\begin{equation*}
+    \Phi = \frac{P}{\hbar \omega} = \frac{10^{-12}}{1.054571817 \times 10^{-34} \times \frac{2\pi \times 2.99792458 \times 10^8}{800 \times 10^{-9}}} \approx 4.027 \times 10^6
+\end{equation*}
+
+将其除以每秒脉冲数即得每个脉冲的平均光子数:
+$$n = \frac{\Phi}{10^{8}} = 0.04$$
+
+
+\subsection*{(b)}
+
+对于具有柏松光子统计的激光, 其一段长度内的光子数符合柏松分布:
+$$\mathcal{P} (n) = \frac{\overline{n}^n}{n!} e^{-\overline{n}}$$
+
+代入即可得到只含一个光子的脉冲所占比例:
+$$\mathcal{P} (1) = 0.04 \times e^{-0.04} \approx 3.843 \times 10^{-2} $$
+
+\subsection*{(c)}
+
+同(b)可计算不含光子的脉冲所占比例:
+$$\mathcal{P} (0) = e^{-0.04} \approx 0.96079 $$
+
+便可知道含有多于一个光子的脉冲所占比例:
+$$\mathcal{P}(n > 1) = 1 - \mathcal{P}(0) - \mathcal{P} (1) = 7.78982 \times 10^{-4}$$
+
+
+\section*{Answer for 5.10}
+
+光电二极管产生的光电流$i$符合下述式, 代入参数波长$\lambda = 1064 nm$, 光功率$P = 66mW$和平均电流$i = 46mA$即可得到量子效率:
+
+$$ i = \eta e \frac{P}{\hbar \omega}  \Rightarrow \eta = \frac{i \hbar \omega}{e P} = \frac{46 \times 10^{-3} \times 1.054571817\times 10^{-34} \times \frac{2\pi \times 2.99792458 \times 10^8}{1064 \times 10^{-9}}}{1.6021766208 \times 10^{-19} \times 66 \times 10^{-3}} \approx 0.812154$$
+
+\section*{Answer for 5.12}
+
+散粒噪声导致的光电流方差满足$\left(\Delta i\right)^2 = 2e \Delta f \braket{i}$. 若约翰逊噪声小于它, 需要满足下列关系, 得到目标关系式.
+
+$$\left(\Delta i\right)^2 = 2 e \Delta f \braket{i} > \frac{4 k_B T \Delta f}{R} \Rightarrow \braket{i} R > \frac{2k_B T}{e} \Rightarrow V > \frac{2k_B T}{e}$$
+
+代入$T = 300K$即可知对应电压值为$52mV$.
+
+
+\end{document}
