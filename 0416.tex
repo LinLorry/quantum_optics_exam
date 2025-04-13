@@ -1,0 +1,106 @@
+%!LW recipe=xelatex
+\documentclass[twoside]{article}
+\usepackage{braket}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[a4paper,margin=0.5in,includehead,]{geometry}
+\usepackage{fancyhdr}
+\usepackage[UTF8]{ctex}
+\usepackage{float}
+% \usepackage{layouts}
+
+
+\usepackage{pgfplots}
+\begin{document}
+\title{量子光学04月16日第四次作业}
+\author{Author}
+\pagestyle{fancy}
+\makeatletter
+\fancyhead[L]{\@title}
+\fancyhead[R]{\@author}
+\makeatother
+\setlength{\parindent}{0pt}
+
+\providecommand{\mathdefault}[1]{#1}
+\section*{Answer for 6.3}
+
+\subsection*{(a)}
+
+有:
+\begin{equation*}
+    \begin{split}
+        \left(x(t_1) - x(t_2)\right)^2      & \geqslant 0             \\
+        x(t_1)^2 - 2x(t_1)x(t_2) + x(t_2)^2 & \geqslant 0             \\
+        x(t_1)^2 + x(t_2)^2                 & \geqslant 2x(t_1)x(t_2) \\
+    \end{split}
+\end{equation*}
+
+
+\subsection*{(b)}
+
+有:
+\begin{equation*}
+    \begin{split}
+        \sum_{i=1}^{N} \sum_{j=1}^{N} I(t_i) I(t_j) & \leqslant \frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \left(I(t_i)^2 + I(t_j)^2\right)    \\
+        \sum_{i=1}^{N} \sum_{j=1}^{N} I(t_i) I(t_j) & \leqslant \frac{1}{2} \sum_{i=1}^{N} \left( N I(t_i)^2 + \sum_{j=1}^{N} I(t_j)^2\right) \\
+        \sum_{i=1}^{N} \sum_{j=1}^{N} I(t_i) I(t_j) & \leqslant \frac{N}{2} \sum_{i=1}^{N} I(t_i)^2 + \frac{N}{2} \sum_{j=1}^{N} I(t_j)^2     \\
+        \sum_{i=1}^{N} \sum_{j=1}^{N} I(t_i) I(t_j) & \leqslant N \sum_{i=1}^{N} I(t_i)^2                                                     \\
+        \left(\sum_{i=1}^{N} I(t_i)\right)^2        & \leqslant N \sum_{i=1}^{N} I(t_i)^2                                                     \\
+    \end{split}
+\end{equation*}
+
+\subsection*{(c)}
+
+有:
+\begin{equation*}
+    \begin{split}
+        \braket{I(t)}^2 =          & \left(\frac{1}{N} \sum_{i=1}^{N} I(t_i) \right)^2  \\
+        =                          & \frac{1}{N^2} \left(\sum_{i=1}^{N} I(t_i)\right)^2 \\
+        \leqslant                  & \frac{1}{N} \sum_{i=1}^{N} I(t_i)^2                \\
+        =                          & \braket{I(t)^2} \Rightarrow                        \\
+        \braket{I(t)}^2  \leqslant & \braket{I(t)^2}
+    \end{split}
+\end{equation*}
+
+
+\clearpage
+
+\section*{Answer for 6.7}
+
+对于高斯线形, 其$\tau_c$满足以下关系, 便可得到相干时间$\tau_c$.
+
+\begin{equation*}
+    \tau_c = \frac{\left(8\pi \ln(2)\right)^\frac{1}{2}}{\Delta \omega} \approx 4.429 \times 10^{-10} s
+\end{equation*}
+
+
+对于光谱线为高斯线形的多普勒展宽, 有其二阶关联函数形式:$g^2(\tau) = 1+ exp\left[-\pi\left(\tau/\tau_c\right)^2\right]$, 依据此可画出其二阶关联函数:
+
+\begin{figure}[h!]
+    \begin{center}
+        \input{./imag/0416.pgf}
+    \end{center}
+\end{figure}
+
+\section*{Answer for 6.9}
+
+\subsection*{(a)}
+
+在时间$T$内原子连续发射两个光子可视为其在最开始$t=0$以及最后$t=T$各发射一光子, 便可得到概率:
+
+$$\mathcal{P}(T) = 1 - e^{-T/2\tau_R}$$
+
+\subsection*{(b)}
+
+二阶关联函数$g^2(\tau)$正比于在时刻$t$观测到一个光子的前提下, 在时刻$t+\tau$探测到第二个光子的概率,对于$\tau = 0$, 其正是$\mathcal{P}(T)$.
+于是有:
+
+$$
+    g^2(0) \thicksim  \mathcal{P}(\tau_D) = 1 - e^{-\tau_D/\tau_c}
+$$
+
+
+
+\end{document}
