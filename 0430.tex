@@ -1,0 +1,173 @@
+%!LW recipe=xelatex
+\documentclass[twoside]{article}
+\usepackage{braket}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[a4paper,margin=0.5in,includehead,]{geometry}
+\usepackage{fancyhdr}
+\usepackage[UTF8]{ctex}
+\usepackage{float}
+% \usepackage{layouts}
+
+
+\usepackage{pgfplots}
+\begin{document}
+\title{量子光学04月30日第五次作业}
+\author{Author}
+\pagestyle{fancy}
+\makeatletter
+\fancyhead[L]{\@title}
+\fancyhead[R]{\@author}
+\makeatother
+\setlength{\parindent}{0pt}
+
+% \providecommand{\mathdefault}[1]{#1}
+
+
+\section*{Question 6.1}
+Prove:
+
+\begin{equation*}
+    \begin{split}
+        \bra{\alpha, \xi } \hat{a} \ket{\alpha , \xi}                 & = \alpha                                 \\
+        \bra{\alpha, \xi } \hat{a}^2 \ket{\alpha , \xi}               & = \alpha^2 - e^{i\theta} \sinh r \cosh r \\
+        \bra{\alpha, \xi } \hat{a}^\dagger \hat{a} \ket{\alpha , \xi} & = |\alpha|^2 + \sinh^2 r
+    \end{split}
+\end{equation*}
+
+Tips:
+
+\begin{equation*}
+    \begin{split}
+        \hat{D}^\dagger (\alpha) \hat{a} \hat{D} (\alpha)         & = \hat{a} + \alpha           \\
+        \hat{D}^\dagger (\alpha) \hat{a}^\dagger \hat{D} (\alpha) & = \hat{a}^\dagger + \alpha^* \\
+    \end{split}
+\end{equation*}
+
+\subsection*{Answer}
+
+\begin{equation*}
+    \begin{split}
+        \bra{\alpha, \xi } \hat{a} \ket{\alpha , \xi} = & \bra{0} \hat{S}^\dagger (\xi) \hat{D}^\dagger (\alpha)  \hat{a} \hat{D}(\alpha) \hat{S} (\xi) \ket{0} \\
+        =                                               & \bra{0} \hat{S}^\dagger (\xi) \left(\hat{a} + \alpha\right) \hat{S} (\xi) \ket{0}                     \\
+        =                                               & \bra{0} \left(\hat{a} \cosh r - \hat{a}^\dagger e^{i\theta} \sinh r\right)  \ket{0} + \alpha          \\
+        =                                               & \alpha
+    \end{split}
+\end{equation*}
+
+\begin{equation*}
+    \begin{split}
+        \bra{\alpha, \xi } \hat{a}^2 \ket{\alpha , \xi} = & \bra{0} \hat{S}^\dagger (\xi) \hat{D}^\dagger (\alpha)  \hat{a}^2 \hat{D}(\alpha) \hat{S} (\xi) \ket{0}                                                                                                 \\
+        =                                                 & \bra{0} \hat{S}^\dagger (\xi) \hat{D}^\dagger (\alpha)  \hat{a} \hat{D} (\alpha) \hat{D}^\dagger (\alpha) \hat{a} \hat{D}(\alpha) \hat{S} (\xi) \ket{0}                                                 \\
+        =                                                 & \bra{0} \hat{S}^\dagger (\xi) \left(\hat{a} + \alpha\right)^2\hat{S} (\xi) \ket{0}                                                                                                                      \\
+        =                                                 & \bra{0} \hat{S}^\dagger (\xi) \left(\hat{a}^2 + 2\alpha \hat{a} + \alpha^2\right) \hat{S} (\xi) \ket{0}                                                                                                 \\
+        =                                                 & \alpha^2 + \bra{0} \hat{S}^\dagger (\xi) \hat{a} \hat{S} (\xi) \hat{S}^\dagger (\xi) \hat{a} \hat{S} (\xi) \ket{0}                                                                                      \\
+        =                                                 & \alpha^2 + \bra{0} \left(\hat{a} \cosh r - \hat{a}^\dagger e^{i\theta} \sinh r\right)^2  \ket{0}                                                                                                        \\
+        =                                                 & \alpha^2 + \bra{0} \left[\hat{a}^2 \cosh^2 r - \left(\hat{a} \hat{a}^\dagger + \hat{a}^\dagger \hat{a}\right) e^{i\theta} \cosh r \sinh r  + \hat{a}^{\dagger 2} e^{2i\theta} \sinh^2 r\right]  \ket{0} \\
+        =                                                 & \alpha^2 - e^{i\theta} \cosh r \sinh r
+    \end{split}
+\end{equation*}
+
+\begin{equation*}
+    \begin{split}
+        \bra{\alpha, \xi } \hat{a}^\dagger \hat{a} \ket{\alpha , \xi} = & \bra{0} \hat{S}^\dagger (\xi) \hat{D}^\dagger (\alpha)  \hat{a}^\dagger \hat{a} \hat{D}(\alpha) \hat{S} (\xi) \ket{0}                                                                                                          \\
+        =                                                               & \bra{0} \hat{S}^\dagger (\xi) \hat{D}^\dagger (\alpha)  \hat{a}^\dagger \hat{D} (\alpha) \hat{D}^\dagger (\alpha) \hat{a} \hat{D}(\alpha) \hat{S} (\xi) \ket{0}                                                                \\
+        =                                                               & \bra{0} \hat{S}^\dagger (\xi) \left(\hat{a}^\dagger + \alpha^*\right) \left(\hat{a} + \alpha\right)\hat{S} (\xi) \ket{0}                                                                                                       \\
+        =                                                               & \bra{0} \hat{S}^\dagger (\xi) \left(\hat{a}^\dagger \hat{a} + \alpha \hat{a}^\dagger + \alpha^*\hat{a} + |\alpha|^2\right) \hat{S} (\xi) \ket{0}                                                                               \\
+        =                                                               & |\alpha|^2 + \bra{0} \hat{S}^\dagger (\xi) \hat{a}^\dagger \hat{S} (\xi) \hat{S}^\dagger (\xi) \hat{a} \hat{S} (\xi) \ket{0}                                                                                                   \\
+        =                                                               & |\alpha|^2 + \bra{0} \left(\hat{a}^\dagger \cosh r - \hat{a} e^{-i\theta} \sinh r\right) \left(\hat{a} \cosh r - \hat{a}^\dagger e^{i\theta} \sinh r\right)  \ket{0}                                                           \\
+        =                                                               & |\alpha|^2 + \bra{0} \left[\hat{a}^\dagger \hat{a} \cosh^2 r - \left(\hat{a}^\dagger \hat{a}^\dagger e^{i\theta} + \hat{a} \hat{a} e^{-i\theta}\right)  \cosh r \sinh r  + \hat{a} \hat{a}^{\dagger} \sinh^2 r\right]  \ket{0} \\
+        =                                                               & |\alpha|^2 + \sinh^2 r
+    \end{split}
+\end{equation*}
+
+\clearpage
+
+\section*{Question 6.2}
+Prove:
+
+\begin{equation*}
+    \left(\mu \hat{a} + \nu \hat{a}^\dagger\right) \ket{\alpha, \xi} = \left(\alpha \cosh r + \alpha^* e^{i\theta} \sinh r\right) \ket{\alpha, \xi} \equiv r \ket{\alpha, \xi}
+\end{equation*}
+
+
+\subsection*{Answer}
+
+\begin{equation*}
+    \begin{split}
+        \left(\mu \hat{a} + \nu \hat{a}^\dagger\right) \ket{\alpha, \xi} = &
+        \left(\mu \hat{a} + \nu \hat{a}^\dagger\right) \hat{D} (\alpha) \hat{S} (\xi)\ket{0}                                                                                       \\
+        =                                                                  &
+        \hat{D} (\alpha) \hat{D}^\dagger (\alpha) \left(\mu \hat{a} + \nu \hat{a}^\dagger\right) \hat{D} (\alpha) \hat{S} (\xi)\ket{0}                                             \\
+        =                                                                  &
+        \hat{D} (\alpha) \left[\mu \left(\hat{a} + \alpha \right) + \nu \left(\hat{a}^\dagger + \alpha^* \right)\right] \hat{S} (\xi)\ket{0}                                       \\
+        =                                                                  &
+        \left(\mu \alpha + \nu \alpha^*\right) \hat{D} (\alpha)  \hat{S} (\xi)\ket{0} +
+        \hat{D} (\alpha) \hat{S} (\xi) \hat{S}^\dagger (\xi)\left(\mu \hat{a} + \nu \hat{a}^\dagger \right) \hat{S} (\xi)\ket{0}                                                   \\
+        =                                                                  &
+        \left(\mu \alpha + \nu \alpha^*\right) \ket{\alpha, \xi} +
+        \hat{D} (\alpha) \hat{S} (\xi) \left[\mu \left(\hat{a} \mu - \hat{a}^\dagger \nu\right) + \nu \left(\hat{a}^\dagger \mu - \hat{a}e^{-i\theta} \sinh r\right)\right]\ket{0} \\
+        =                                                                  &
+        \left(\mu \alpha + \nu \alpha^*\right) \ket{\alpha, \xi} +
+        \hat{D} (\alpha) \hat{S} (\xi) \left(\mu^2 - \nu e^{-i\theta \sinh r}\right)\hat{a}\ket{0}                                                                                 \\
+        =                                                                  & \left(\alpha \cosh r + \alpha^* e^{i\theta} \sinh r\right) \ket{\alpha, \xi}                          \\
+        \equiv                                                             & r \ket{\alpha, \xi}                                                                                   \\
+    \end{split}
+\end{equation*}
+
+
+\section*{Question 6.3}
+Prove:
+
+\begin{equation*}
+    P_n = |\braket{n|\alpha,\xi}|^2 =  \frac{\left(\frac{1}{2}\tanh r\right)^n}{n! \cosh r} \exp \left[-|\alpha|^2 - \frac{1}{2}\left({\alpha^{*}}^2 e^{i\theta} + \alpha^2 e^{-i\theta}\right)\tanh r\right] |H_n\left[r\left(e^{i\theta}\sinh 2r\right)^{-\frac{1}{2}}\right]|^2
+\end{equation*}
+
+
+\subsection*{Answer}
+
+对于压缩态, 使用数态展开为:
+\begin{equation*}
+    \ket{\alpha, \xi} = \frac{1}{\sqrt{\cosh r}}
+    \exp \left(-\frac{1}{2}|\alpha|^2 - \frac{1}{2}\alpha^{*2} e^{i\theta} \tanh r\right) \times
+    \sum_{n=0}^\infty \frac{\left(\frac{1}{2}e^{i\theta} \tanh r \right)^{n/2}}{\sqrt{n!}} H_n \left[\gamma\left(e^{i\theta}\sinh 2r\right)^{-1/2}\right] \ket{n}
+\end{equation*}
+
+那么在场中发现n个光子的概率即为:
+\begin{equation*}
+    \begin{split}
+        P_n = & |\braket{n|\alpha, \xi}|^2                                                                                                                                         \\
+        =     & \braket{n|\alpha, \xi} \braket{\alpha, \xi | n}                                                                                                                    \\
+        =     & \frac{1}{\cosh r} \exp\left[- |\alpha|^2 - \frac{1}{2}\left(\alpha^{*2}e^{i\theta} + \alpha^2 e^{-i\theta}\right)\tanh r\right]
+        \left| \frac{\left(\frac{1}{2}e^{i\theta} \tanh r \right)^{n/2}}{\sqrt{n!}} H_n \left[\gamma\left(e^{i\theta}\sinh 2r\right)^{-1/2}\right]\right|^2                        \\
+        =     & \frac{\left(\frac{1}{2}\tanh r\right)^n}{n! \cosh r} \exp\left[- |\alpha|^2 - \frac{1}{2}\left(\alpha^{*2}e^{i\theta} + \alpha^2 e^{-i\theta}\right)\tanh r\right]
+        \left| H_n \left[\gamma\left(e^{i\theta}\sinh 2r\right)^{-1/2}\right]\right|^2                                                                                             \\
+    \end{split}
+\end{equation*}
+
+
+\section*{Answer for 7.11}
+
+对于极强正交幅压缩的光, 最有可能满足振幅压缩的情况为椭圆的短轴定位相干态的相矢量方向.
+而由于振幅的不确定度极小, 导致在椭圆面积仍满足不确定度关系的前提下, 要求椭圆的长轴极长.
+也就导致椭圆无法完全落在振幅不确定度的范围, 长轴的两极会落在范围外导致不再是振幅压缩光.
+
+强振幅压缩的光在相位不确定度上极大, 其不确定度区域需要落在相平面以原点为圆心的圆环内,
+也就导致其不确定区域需要适当弯曲为"香蕉状".
+
+\section*{Answer for 7.15}
+
+光照强度和电场振幅有如下关系
+\begin{equation*}
+    I = \frac{1}{2} c \epsilon_0 n |\mathcal{E}_p|^2  \Rightarrow Re(\mathcal{E}_p) = \sqrt{\frac{2I}{c \epsilon_0 n}}
+\end{equation*}
+
+将其代入衰减因子中即可得到期望的正交压缩比$\eta$:
+\begin{equation*}
+    \eta = 1 - \exp(-\gamma L) = 1 - \exp\left(-\frac{\omega \chi^{(2)} \mathcal{E}_p }{2 n c} L\right) = 1 - \exp \left(- \frac{2 \pi \chi^{(2)} L \sqrt{\frac{2 I }{c \epsilon_0 n}}}{2 n \lambda}\right) \approx 18\%
+\end{equation*}
+
+
+\end{document}
