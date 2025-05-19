@@ -1,0 +1,386 @@
+%!LW recipe=xelatex
+\documentclass[twoside]{article}
+\usepackage{braket}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[a4paper,margin=0.5in,includehead,]{geometry}
+\usepackage{fancyhdr}
+\usepackage[UTF8]{ctex}
+\usepackage{float}
+% \usepackage{layouts}
+
+
+\usepackage{pgfplots}
+\begin{document}
+\title{量子光学05月21日第六次作业}
+\author{Author}
+\pagestyle{fancy}
+\makeatletter
+\fancyhead[L]{\@title}
+\fancyhead[R]{\@author}
+\makeatother
+\setlength{\parindent}{0pt}
+
+% \providecommand{\mathdefault}[1]{#1}
+
+\section*{Answer for 9.1}
+
+对于受迫运动的微分方程:
+$$
+    m_e \frac{d^2 x}{dt^2} + m_e \gamma \frac{dx}{dt} + m_e \omega_0^2 x = F_0 \cos\omega t
+$$
+
+% $$
+%     \frac{d^2 x}{dt^2} + \gamma \frac{dx}{dt} + \omega_0^2 x = \frac{F_0}{m_e}\cos\omega t
+% $$
+
+有解:
+\begin{equation}
+    x(t) = A_0 e^{-\gamma t/2} \cos\left(\sqrt{\omega_0^2 - \frac{\gamma^2}{4}} t + \varphi_0\right) + A \cos\left(\omega t + \varphi\right)
+\end{equation}
+
+其中, 对于振幅A有如下近似:
+
+\begin{equation}
+    A = \frac{F_0}{m_e \sqrt{\left(\omega_0^2 - \omega^2\right)^2 + \gamma^2 \omega^2}}
+\end{equation}
+
+对其求导可获得最大值位于$\omega = \omega_0$处:
+\begin{equation}
+    \frac{dA}{d\omega} = 0 \Rightarrow \omega_{m} = \sqrt{\omega_0^2 - \frac{\gamma^2}{2}} \approx \omega_0 \text{, }
+    A_m = \frac{F_0}{m_e \gamma\omega_0} \qquad (\text{since }\omega_0 \gg \gamma)
+\end{equation}
+
+代入$A = \frac{A_m}{2}$:
+\begin{equation}
+    \begin{split}
+        A = \frac{A_m}{2} \Rightarrow \frac{F_0}{2m_e \sqrt{\frac{\gamma^4}{4} + \gamma^2 \left(\omega_0^2 - \frac{\gamma^2}{2}\right)}} & = \frac{F_0}{m_e \sqrt{(\omega_0^2 - \omega^2)^2 + \gamma^2 \omega^2}}       \\
+        4\gamma^2 \omega_0^2 - \gamma^4                                                                                                  & = \omega_0^4 + \omega^4 - 2\omega_0^2\omega^2 + \gamma^2 \omega^2            \\
+        \left(\omega^2 - \omega_m^2\right)^2                                                                                             & = 3 \gamma^2 \left(\omega_m^2 + \frac{\gamma^2}{4}\right)                    \\
+        \omega^2                                                                                                                         & = \omega_m^2 \pm \gamma \sqrt{3\left(\omega_m^2 + \frac{\gamma^2}{4}\right)} \\
+        \omega^2                                                                                                                         & \approx \omega_m^2 \pm \gamma \omega_m + \frac{\gamma^2}{4}                  \\
+        \omega^2                                                                                                                         & = \left(\omega_m \pm \frac{\gamma}{2}\right)^2                               \\
+        \omega_\pm                                                                                                                       & = \omega_m \pm \frac{\gamma}{2}                                              \\
+    \end{split}
+\end{equation}
+求得半高宽$\text{FWHM} = \omega_+ - \omega_- = \gamma$
+
+\section*{Answer for 9.5}
+
+\subsection*{(a)}
+
+有旋波近似下$c_1(t)$和$c_2(t)$的微分方程:
+
+\begin{align}
+    \dot{c}_1(t) = & \frac{i}{2} \Omega_R e^{i\delta\omega t} c_2(t)  \label{eq:c_1} \\
+    \dot{c}_2(t) = & \frac{i}{2} \Omega_R e^{-i\delta\omega t} c_1(t)
+\end{align}
+
+对$c_2(t)$的微分方程两边求导:
+
+\begin{equation} \label{eq:ddc_2}
+    \begin{split}
+        \ddot{c}_2(t) = & \frac{d}{dt} \left(\frac{i}{2}\Omega_R e^{-i\delta\omega t} c_1 (t)\right)                                                                                                                                                      \\
+        =               & \frac{i}{2} \Omega_R \left(-i\delta \omega e^{-i\delta\omega t} c_1 (t) + e^{-i\delta\omega t} \dot{c}_1 (t)\right)                                                                                                             \\
+        =               & \frac{i}{2} \Omega_R \left[-i\delta \omega e^{-i\delta\omega t} \left(-\frac{2ie^{i\delta \omega t}}{\Omega_R} \dot{c}_2 (t)\right) + e^{-i\delta\omega t} \left(\frac{i}{2}\Omega_R e^{i\delta \omega t} c_2(t)\right) \right] \\
+        =               & -i\delta \omega \dot{c}_2(t) - \frac{\Omega^2}{4} c_2(t)
+    \end{split}
+\end{equation}
+
+
+将(\ref{eq:c_1})代入(\ref{eq:ddc_2})得到目标:
+\begin{equation*}
+    \ddot{c}_2(t) + i\delta \omega \dot{c}_2(t) + \frac{\Omega_R^2}{4} c_2(t) = 0
+\end{equation*}
+
+\subsection*{(b)}
+代入试探解求得目标:
+
+\begin{equation}
+    \begin{split}
+        \frac{d^2 c_2(t)}{d t^2} + i\delta\omega \frac{d c_2 (t)}{dt} + \frac{\Omega_R^2}{4} c_2(t) =                                                            & 0                                                                                          \\
+        \frac{d^2}{d t^2} \left(C e^{-i\zeta t}\right) + i\delta\omega \frac{d}{dt} \left(C e^{-i\zeta t}\right) + \frac{\Omega_R^2}{4} C e^{-i\zeta t} =        & 0                                                                                          \\
+        \left(-i\zeta \right) \frac{d}{d t} \left(e^{-i\zeta t}\right) + i\delta\omega \left(-i\zeta \right) e^{-i\zeta t}+ \frac{\Omega_R^2}{4} e^{-i\zeta t} = & 0                                                                                          \\
+        \left(-i\zeta \right)^2 e^{-i\zeta t} + \left(\delta\omega\zeta + \frac{\Omega_R^2}{4}\right) e^{-i\zeta t} =                                            & 0                                                                                          \\
+        -\zeta^2 + \delta\omega\zeta + \frac{\Omega_R^2}{4} =                                                                                                    & 0                                                                                          \\
+        \zeta^2 - \delta\omega\zeta + \frac{1}{2} \delta\omega  =                                                                                                & \frac{1}{4}\delta\omega + \frac{\Omega_R^2}{4}                                             \\
+        \left(\zeta  - \frac{1}{2}\delta\omega\right)^2  =                                                                                                       & \frac{1}{4}\delta\omega + \frac{\Omega_R^2}{4}                                             \\
+        \zeta_\pm  =                                                                                                                                             & \frac{1}{2}\delta\omega \pm \frac{1}{2} \left(\delta\omega + \Omega_R^2\right)^\frac{1}{2} \\
+    \end{split}
+\end{equation}
+
+\subsection*{(c)}
+
+% \begin{equation}
+%     \delta\omega = \omega - \omega_0 = 0
+% \end{equation}
+
+使用$c_2(0) = 0$的初始条件获得$C_+$与$C_-$的关系:
+
+\begin{equation}
+    \begin{split}
+        c_2(0) = 0 & \Rightarrow C_+ + C_- = 0                                                 \\
+                   & \Rightarrow C_+ = - C_-                                                   \\
+                   & \Rightarrow c_2(t) = C_+ \left(e^{-i \zeta_+ t} - e^{-i \zeta_- t}\right) \\
+    \end{split}
+\end{equation}
+
+再使用$c_1(0) = 1$的初始条件获得$C_+$与$C_-$的值:
+
+\begin{equation}
+    \begin{split}
+        c_1(0) = 1 & \Rightarrow \dot{c}_2 (0) = \frac{i}{2} \Omega_R                                               \\
+                   & \Rightarrow C_+ \left(-i\zeta_+ + i \zeta_-\right) = \frac{i}{2} \Omega_R                      \\
+                   & \Rightarrow C_+ = \frac{\Omega_R}{-\Omega + (-\Omega)} = -\frac{\Omega_R}{2\Omega}             \\
+                   & \Rightarrow c_2 (t) = -\frac{\Omega_R}{2\Omega} \left(e^{-i\zeta_+ t} - e^{-i\zeta_- t}\right) \\
+    \end{split}
+\end{equation}
+
+最后代入$C_+$与$C_-$得到结果:
+\begin{equation}
+    \begin{split}
+        |c_2(t)|^2 = & \frac{\Omega_R^2}{4\Omega^2} \left(e^{-i\zeta_+ t} - e^{-i\zeta_- t}\right) \left(e^{i\zeta_+ t} - e^{i\zeta_- t}\right)                                                                \\
+        =            & \frac{\Omega_R^2}{4\Omega^2} \left(- e^{-i\left(\zeta_+ - \zeta_-\right)t} - e^{i\left(\zeta_+ - \zeta_-\right)t} + 2\right)                                                            \\
+        =            & \frac{\Omega_R^2}{4\Omega^2} \left(- e^{-i\Omega t} - e^{i\Omega t} + 2\right)                                                                                                          \\
+        =            & \frac{\Omega_R^2}{4\Omega^2} \left\{- \left[\cos\left(\Omega t\right)-i\sin\left(\Omega t\right)\right] - \left[\cos\left(\Omega t\right)+i\sin\left(\Omega t\right)\right] + 2\right\} \\
+        =            & \frac{\Omega_R^2}{4\Omega^2} \left[-2\cos\left(\Omega t\right) + 2\right]                                                                                                               \\
+        % =            & \frac{\Omega_R^2}{2\Omega^2} \left[-\left[\cos^2\left(\Omega t/2\right) - \sin^2\left(\Omega t/2\right)\right] + 1\right]                                                               \\
+        % =            & \frac{\Omega_R^2}{2\Omega^2} \left[-\left[1 - 2\sin^2\left(\Omega t/2\right)\right] + 1\right]                                                                                          \\
+        =            & \frac{\Omega_R^2}{\Omega^2} \sin^2\left(\Omega t/2\right)                                                                                                                               \\
+    \end{split}
+\end{equation}
+
+
+\section*{Answer for 9.9}
+
+对于极坐标, 并且在布洛赫球上，恒有$r = 1$, 知$x$, $y$, $z$ 与极坐标关系:
+\begin{equation}
+    \begin{cases}
+        x & = \sin\theta \cos\varphi \\
+        y & = \sin\theta \sin\varphi \\
+        z & = \cos\theta             \\
+    \end{cases}
+\end{equation}
+
+通过变换, 得到$c_1$,$c_2$与极坐标关系:
+
+\begin{equation}
+    \begin{split}
+        1 - z =                 & 1 - \cos\theta                               \\
+        1 - |c_2|^2 + |c_1|^2 = & 2 \sin^2\left(\frac{\theta}{2}\right)        \\
+        |c_1|^2  =              & \sin^2\left(\frac{\theta}{2}\right)          \\
+        c_1  =                  & e^{i\alpha}\sin\left(\frac{\theta}{2}\right) \\
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        x + iy =                                                     & \sin\theta \left(\cos \varphi +i\sin\varphi\right)                              \\
+        2\text{Re}\braket{c_1 c_2} + 2i \text{Im} \braket{c_1 c_2} = & \sin\theta e^{i\varphi}                                                         \\
+        c_1 c_2 =                                                    & e^{i\varphi} \sin\left(\frac{\theta}{2}\right)\cos\left(\frac{\theta}{2}\right) \\
+        c_2 =                                                        & e^{i\alpha} e^{i(\varphi-2\alpha)}\cos\left(\frac{\theta}{2}\right)             \\
+    \end{split}
+\end{equation}
+
+由于xy轴的方向是任意选择的,所以$\varphi$也可平移变换:
+\begin{equation}
+    \varphi^\prime = \varphi - 2\alpha
+\end{equation}
+
+丢弃全局相位$e^{i\alpha}$,得到目标关系式:
+\begin{equation}
+    \begin{cases}
+        c_1 & = \sin\left(\frac{\theta}{2}\right)                    \\
+        c_2 & = e^{i\varphi^\prime}\cos\left(\frac{\theta}{2}\right)
+    \end{cases}
+\end{equation}
+
+
+% \begin{equation}
+%     \begin{split}
+%         \frac{y}{x} = \tan\varphi               & \Rightarrow \varphi = \arctan\frac{\text{Re}\braket{c_1c_2}}{\text{Im}\braket{c_1c_2}} = \frac{c_1 c_2 + c_1^* c_2^*}{c_1 c_2 - c_1^* c_2^*} \\
+%         \frac{z}{\sqrt{x^2 + y^2}} = \cos\theta & \Rightarrow \theta = \arccos \frac{|c_2|^2 - |c_1|^2}{\sqrt{|c_1c_2|^2}}
+%     \end{split}
+% \end{equation}
+
+\section*{Answer for 9.11}
+
+\subsection*{(a)}
+\begin{equation*}
+    x = \frac{2\sqrt{2}}{3} \qquad y = 0 \qquad z = \frac{1}{3}
+\end{equation*}
+\subsection*{(b)}
+\begin{equation*}
+    x = 0 \qquad y = \frac{2\sqrt{2}}{3} \qquad z = \frac{1}{3}
+\end{equation*}
+\subsection*{(c)}
+\begin{equation*}
+    x = \frac{\sqrt{2}}{2} \qquad y = \frac{\sqrt{2}}{2} \qquad z = 0
+\end{equation*}
+
+\section*{Answer for 9.14}
+
+$$
+    \Theta(t) = |\frac{\mu_{12}}{\hbar} \int_{t}^{0} \mathcal{E}_0 (\tau) d\tau|
+$$
+默认一开始绕y轴转并且初态为1态位于布洛赫球的南极
+\subsection*{(a)}
+
+$$\Theta_1 = \frac{\pi}{4} \qquad \Theta_2 = \frac{3\pi}{4} \qquad \phi = 0$$
+
+即先绕y轴转$\frac{\pi}{4}$, 再继续绕y轴转$\frac{3\pi}{4}$, 得到:
+$$\ket{\psi} = \ket{2}$$
+
+\subsection*{(a)}
+
+$$\Theta_1 = \frac{\pi}{2} \qquad \Theta_2 = \pi \qquad \phi = \frac{\pi}{2}$$
+
+即先绕y轴转$\frac{\pi}{2}$, 再继续绕$-x$轴转$\pi$, 得到:
+
+$$\ket{\psi} = \frac{1}{\sqrt{2}}\ket{1} + \frac{1}{\sqrt{2}}\ket{2}$$
+
+\subsection*{(c)}
+
+$$\Theta_1 = \frac{\pi}{2} \qquad \Theta_2 = \pi \qquad \phi = \frac{\pi}{4}$$
+
+即先绕y轴转$\frac{\pi}{2}$, 再继续绕与$y$轴和$-x$轴各成$45^\circ$的轴转$\pi$, 得到:
+
+$$\ket{\psi} = \frac{1}{\sqrt{2}}\ket{1} - \frac{i}{\sqrt{2}}\ket{2}$$
+
+
+% \begin{align}
+%     \hat{V}_1 (t) & = ex\mathcal{E}_1 \cos\left(\omega t\right) = \frac{ex\mathcal{E}_1}{2}\left(e^{i\omega t} + e^{-i\omega t}\right)  = - \frac{\mathcal{E}_1}{2}\left(e^{i\omega t} + e^{-i\omega t}\right) \hat{\mu}                                                                                         \\
+%     \hat{V}_2 (t) & = ex\mathcal{E}_2 \cos\left(\omega t + \phi\right) = -\frac{ex\mathcal{E}_2}{2}\left(e^{i\left(\omega t + \phi\right)} + e^{-i\left(\omega t + \phi\right)}\right) = - \frac{\mathcal{E}_2}{2} \left(e^{i\left(\omega t + \phi\right)} + e^{-i\left(\omega t + \phi\right)}\right) \hat{\mu}
+% \end{align}
+
+% \begin{align}
+%     \left(\hat{V}_1\right)_{ij} (t) & = - \frac{\mathcal{E}_1}{2}\left(e^{i\omega t} + e^{-i\omega t}\right) \mu_{ij}                                          \\
+%     \left(\hat{V}_2\right)_{ij} (t) & = - \frac{\mathcal{E}_2}{2} \left(e^{i\left(\omega t + \phi\right)} + e^{-i\left(\omega t + \phi\right)}\right) \mu_{ij}
+% \end{align}
+
+% % \begin{equation}
+% %     \begin{split}
+% %         \hat{V}_2 (t) = & ex\mathcal{E}_2 \cos\left(\omega t + \phi\right)                                                  \\
+% %         =               & \frac{ex\mathcal{E}_2}{2}\left(e^{i\omega t + i\phi} + e^{-i\omega t - i\phi}\right)              \\
+% %         =               & \frac{ex\mathcal{E}_2}{2} e^{i\phi} \left(e^{i\omega t} + e^{-i\omega t - 2i\phi}\right)          \\
+% %         =               & -\frac{\mathcal{E}_2}{2} e^{i\phi} \left(e^{i\omega t} + e^{-i\omega t - 2i\phi}\right) \hat{\mu} \\
+% %     \end{split}
+% % \end{equation}
+
+% % \begin{equation}
+% %     \left(V_{2}\right)_{ij}(t) = -\frac{\mathcal{E}_2}{2}e^{i\phi}\left(e^{i\omega_0 t} + e^{-i\omega_0 t - 2i\phi}\right)\mu_{ij}
+% % \end{equation}
+
+% \begin{align}
+%     \dot{c}_1 (t) = & -\frac{i}{\hbar} \left[c_1(t) \left(V_2\right)_{11}+ c_2(t) \left(V_2\right)_{12} e^{-i\omega_0 t}\right]
+%     = \frac{i\mathcal{E}_2}{2\hbar} c_2(t) \left(e^{i\left(\omega t - \omega_0 t + \phi\right)} + e^{-i\left(\omega t + \omega_0 t + \phi\right)}\right)\mu_{12} \\
+%     \dot{c}_2 (t) = & -\frac{i}{\hbar} \left[c_1(t) \left(V_2\right)_{21}e^{i\omega_0 t} + c_2(t)\left(V_2\right)_{22}\right]
+%     = \frac{i\mathcal{E}_2}{2\hbar} c_1(t) \left(e^{i\left(\omega t + \omega_0 t + \phi\right)} + e^{-i\left(\omega t - \omega_0 t + \phi\right)}\right)\mu_{21}
+% \end{align}
+
+
+% $$\omega = \omega_0, \qquad \mu_{12} = \mu_{21}, \qquad \Omega_{R2} = \frac{\mathcal{E}_2\mu_{12}}{\hbar}$$
+% \begin{align}
+%     \dot{c}_1 (t) = & \frac{i\mathcal{E}_2}{2\hbar} c_2(t) \left(e^{i\phi} + e^{-i\left(2\omega_0 t + \phi\right)}\right)\mu_{12} = \frac{i}{2} \Omega_{R2} \left(e^{i\phi} + e^{-i\left(2\omega_0 t + \phi\right)}\right) c_2(t) \approx \frac{e^{i(\phi + \pi/2)}}{2}\Omega_{R2}  c_2(t)  \\
+%     \dot{c}_2 (t) = & \frac{i\mathcal{E}_2}{2\hbar} c_1(t) \left(e^{i\left(2\omega_0 t + \phi\right)} + e^{-i\phi}\right)\mu_{21} = \frac{i}{2} \Omega_{R2} \left(e^{i\left(2\omega_0 t + \phi\right)} + e^{-i\phi}\right) c_1(t) \approx \frac{e^{-i(\phi - \pi/2)}}{2}\Omega_{R2}  c_1(t)
+% \end{align}
+
+% \begin{align}
+%     \ddot{c}_1 (t) = & \frac{e^{i(\phi + \pi/2)}}{2} \Omega_{R2}\dot{c}_2(t) = \frac{e^{i(\phi + \pi/2) - i(\phi - \pi/2)}}{4} \Omega_{R2}^2 c_1(t) = - \frac{\Omega_{R2}^2}{4} c_1(t)   \\
+%     \ddot{c}_2 (t) = & \frac{e^{-i(\phi - \pi/2)}}{2} \Omega_{R2}\dot{c}_1(t) = \frac{e^{-i(\phi - \pi/2) + i(\phi + \pi/2)}}{4} \Omega_{R2}^2 c_2(t) = - \frac{\Omega_{R2}^2}{4} c_2(t) \\
+% \end{align}
+
+% \begin{align}
+%     c_1(t) = A_1 e^{i\Omega_{R2}t / 2} + A_2 e^{-i\Omega_{R2} t / 2} \\
+%     c_2(t) = B_1 e^{i\Omega_{R2}t / 2} + B_2 e^{-i\Omega_{R2} t / 2}
+% \end{align}
+
+% \begin{equation}
+%     \begin{split}
+%         \dot{c}_2 (t) = & B_1 \frac{i \Omega_{R2}}{2} e^{i\Omega_{R2} t / 2} - B_2 \frac{i\Omega_{R2}}{2} e^{-i\Omega_{R2} t / 2}                              \\
+%         =               & \frac{e^{-i(\phi - \pi/2)}}{2} \Omega_{R2} \left(B_1 e^{i\phi} e^{i\Omega_{R2} t / 2} - B_2 e^{i\phi} e^{-i\Omega_{R2} t / 2}\right) \\
+%         =               & \frac{e^{-i(\phi - \pi/2)}}{2} \Omega_{R2} c_1(t)
+%     \end{split}
+% \end{equation}
+
+% \begin{align}
+%     A_1 & = B_1 e^{i\phi}  \\
+%     A_2 & = -B_2 e^{i\phi}
+% \end{align}
+% \begin{equation}
+%     \begin{split}
+%         |c_1(t)|^2 + |c_2(t)|^2 = & |A_1|^2 + |A_2|^2 + A_1 A_2^* e^{i\Omega_{R2} t} + A_1^* A_2 e^{-i\Omega_{R2} t} + |B_1|^2 + |B_2|^2 + B_1 B_2^* e^{i\Omega_{R2} t} + B_1^* B_2 e^{-i\Omega_{R2} t} \\
+%         =                         & 2|B_1|^2 + 2|B_2|^2                                                                                                                                                 \\
+%         =                         & 1                                                                                                                                                                   \\
+%         \Rightarrow               & |B_1|^2 + |B_2|^2 = \frac{1}{2}
+%     \end{split}
+% \end{equation}
+
+% \begin{align}
+%     c_1(0) = 1 \\
+%     c_2(0) = 0 \\
+%     \Omega_{R1} = \frac{\mathcal{E}_1\mu_{12}}{\hbar}
+% \end{align}
+
+% \subsection*{(a)}
+% \begin{align}
+%     c_1(\tau_1) = \cos\left(\Omega_{R1} \tau_1 / 2\right) = \cos(\frac{\pi}{8})   \\
+%     c_2(\tau_1) = i\sin\left(\Omega_{R1} \tau_1 / 2\right) = i\sin(\frac{\pi}{8}) \\
+% \end{align}
+
+% \begin{equation}
+%     \begin{rcases}
+%         c_1^\prime(0) = c_1 (\tau_1) = \cos(\frac{\pi}{8}) \Rightarrow B_1 - B_2 = \cos(\frac{\pi}{8})   \\
+%         c_2^\prime(0) = c_2 (\tau_1) = i\sin(\frac{\pi}{8}) \Rightarrow B_1 + B_2 = i\sin(\frac{\pi}{8}) \\
+%     \end{rcases}
+%     \Rightarrow
+%     \begin{cases}
+%         B_1 = \frac{\cos(\frac{\pi}{8})+ i\sin(\frac{\pi}{8})}{2}  = \frac{1}{2}e^{i\frac{\pi}{8}}    \\
+%         B_2 = -\frac{\cos(\frac{\pi}{8})- i\sin(\frac{\pi}{8})}{2}  = -\frac{1}{2}e^{-i\frac{\pi}{8}} \\
+%     \end{cases}
+% \end{equation}
+
+% \begin{equation}
+%     \begin{cases}
+%         c_1^\prime (t) = \cos \left(\Omega_{R_2} t / 2 + \pi / 8\right) \\
+%         c_2^\prime (t) = i\sin\left(\Omega_{R_2} t / 2 + \pi / 8\right) \\
+%     \end{cases}
+% \end{equation}
+
+% \begin{equation}
+%     c_1^\prime (\tau) = 0 \qquad c_2^\prime (\tau) = 1
+% \end{equation}
+
+% \subsection*{(b)}
+% \begin{align}
+%     c_1(\tau_1) = \cos\left(\Omega_{R1} \tau_1 / 2\right) = \cos(\frac{\pi}{4})   \\
+%     c_2(\tau_1) = i\sin\left(\Omega_{R1} \tau_1 / 2\right) = i\sin(\frac{\pi}{4}) \\
+% \end{align}
+
+% \begin{equation}
+%     \begin{rcases}
+%         c_1^\prime(0) = c_1 (\tau_1) = \cos(\frac{\pi}{4}) \Rightarrow iB_1 - iB_2 = \cos(\frac{\pi}{4}) \\
+%         c_2^\prime(0) = c_2 (\tau_1) = i\sin(\frac{\pi}{4}) \Rightarrow B_1 + B_2 = i\sin(\frac{\pi}{4}) \\
+%     \end{rcases}
+%     \Rightarrow
+%     \begin{cases}
+%         B_1 = 0                   \\
+%         B_2 = \frac{i\sqrt{2}}{2} \\
+%     \end{cases}
+% \end{equation}
+
+% \begin{equation}
+%     \begin{cases}
+%         c_1^\prime (t) = \frac{\sqrt{2}}{2}e^{-i\Omega_{R_2} t/2}  \\
+%         c_2^\prime (t) = \frac{i\sqrt{2}}{2}e^{-i\Omega_{R_2} t/2} \\
+%     \end{cases}
+% \end{equation}
+
+% \begin{equation}
+%     c_1^\prime (\tau) = 0 \qquad c_2^\prime (\tau) = 1
+% \end{equation}
+
+
+\end{document}
