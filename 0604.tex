@@ -1,0 +1,108 @@
+%!LW recipe=xelatex
+\documentclass[twoside]{article}
+\usepackage{braket}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[a4paper,margin=0.5in,includehead,]{geometry}
+\usepackage{fancyhdr}
+\usepackage[UTF8]{ctex}
+\usepackage{float}
+% \usepackage{layouts}
+
+
+\usepackage{pgfplots}
+\begin{document}
+\title{量子光学06月04日第七次作业}
+\author{Author}
+\pagestyle{fancy}
+\makeatletter
+\fancyhead[L]{\@title}
+\fancyhead[R]{\@author}
+\makeatother
+\setlength{\parindent}{0pt}
+
+
+% \providecommand{\mathdefault}[1]{#1}
+
+\section*{Answer for 10.5}
+
+\subsection*{(a)}
+
+\begin{equation}
+    Q \gg \left(\frac{4 c \epsilon \hbar \pi V_0}{\lambda \mu_{12}^2}\right)^{1/2} \Rightarrow Q_{min} = 5 \times 10^{7}
+\end{equation}
+
+\subsection*{(b)}
+
+\begin{equation}
+    \begin{rcases}
+        \Delta \omega = \frac{\pi c}{n\mathcal{F} L_{cav}} \\
+        Q = \frac{\omega}{\Delta \omega} \gg \left(\frac{4 c \epsilon \hbar \pi V_0}{\lambda \mu_{12}^2}\right)^{1/2}
+    \end{rcases}
+    \Rightarrow
+    \mathcal{F} \gg \frac{\lambda}{2 n L_{cav}}\left(\frac{4 c \epsilon \hbar \pi V_0}{\lambda \mu_{12}^2}\right)^{1/2}
+    \Rightarrow
+    \mathcal{F}_{min} = 60000
+\end{equation}
+
+\subsection*{(c)}
+
+\begin{equation}
+    \begin{rcases}
+        \tau_{cav} = \frac{nL_{cav}}{c\left(1-R\right)}            \\
+        % \kappa = \frac{1}{\tau_{cav}}                              \\
+        \Delta \omega = \left(\tau_{cav}\right)^{-1} \equiv \kappa \\
+        Q = \frac{\omega}{\Delta \omega} \gg \left(\frac{4 c \epsilon \hbar \pi V_0}{\lambda \mu_{12}^2}\right)^{1/2}
+        % \mathcal{F} = \frac{\pi \left(R_1 R_2\right)^{1/4} }{1- \sqrt{R_1 R_2}}                                             \\
+        % \mathcal{F} \gg \frac{\lambda}{2 n L_{cav}}\left(\frac{4 c \epsilon \hbar \pi V_0}{\lambda \mu_{12}^2}\right)^{1/2} \\
+        % R = R_1 = R_2
+    \end{rcases}
+    \Rightarrow
+    R \gg  1 - \frac{2\pi n L_{cav}}{\lambda} \left(\frac{\lambda \mu_{12}^2}{4 c \epsilon \hbar \pi V_0}\right)^{1/2}
+    \Rightarrow
+    R_{min} = 99.995\%
+\end{equation}
+
+\section*{Answer for 10.8}
+
+\begin{equation}
+    F_p = \frac{3Q \left(\lambda/n\right)^3}{4\pi^2 V_0} = \frac{3\left(\lambda /n\right)^3 \left(\lambda^2 - \frac{1}{4}\Delta \lambda^2\right)}{4 \pi^2 V_0 \lambda \Delta \lambda } \approx 4.1
+\end{equation}
+
+\section*{Answer for 10.11}
+
+\subsection*{(a)}
+% \begin{equation}
+%     \begin{rcases}
+%         g_0 =6.3 \times 10^6 \text{rad} \cdot s^{-1} \\
+%         \sqrt{N} g_0 \gg \kappa                      \\
+%         \tau_{cav} = \frac{1}{\kappa}
+%     \end{rcases}
+%     \Rightarrow
+%     \tau_{cav} \gg \frac{1}{\sqrt{N}g_0} \approx 70.48 \text{ns}
+%     \Rightarrow
+%     \tau_{cav} \sim 100 \text{ns}
+% \end{equation}
+
+
+\begin{equation}
+    \begin{rcases}
+        \Delta \omega = \frac{1}{\tau_{cav}} \\
+        \Delta \omega = \frac{\pi c}{n \mathcal{F}L_{cav}}
+    \end{rcases}
+    \Rightarrow
+    \tau_{cav} = \frac{n \mathcal{F} L_{cav}}{\pi c} \approx 88.28 \text{ns}
+    \Rightarrow
+    \tau_{cav} \sim 100 \text{ns}
+\end{equation}
+
+
+\subsection*{(b)}
+
+\begin{equation}
+    \Delta \Omega^{vac} = 2 \sqrt{N} g_0 > \kappa \Rightarrow N > \left(\frac{1}{2g_0 \tau}\right)^2 \approx 25
+\end{equation}
+
+\end{document}
